@@ -5,9 +5,11 @@
  */
 package laboratoire;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -15,30 +17,46 @@ import javax.swing.JLabel;
  */
 public class Communication implements ActionListener {
 
-    private Ajouter ajout;
-    private Repertoire rep;
-    private JLabel lab;
+    static ActionListener delete;
 
-    public Communication() {
+    private Ajouter ajout;
+    private Repertoire repo;
+//    private Repertoire rep;
+//    private JLabel lab;
+   public Communication(Repertoire rep) {
+      this.repo = rep;
     }
 
     public Communication(Ajouter ajout) {
         this.ajout = ajout;
     }
 
-    public Communication(Ajouter ajout, Repertoire rep, JLabel lab) {
-        this.ajout = ajout;
-        this.rep = rep;
-        this.lab = lab;
-    }
+
+//    public Communication(Ajouter ajout, Repertoire rep, JLabel lab) {
+//        this.ajout = ajout;
+//        this.rep = rep;
+//        this.lab = lab;
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        lab = new JLabel(ajout.getNom().getText() + ajout.getPhoneNumber().getText());
-        System.out.println("Je suis ici");
-        rep.add(lab);
+//        lab = new JLabel(ajout.getNom().getText() + ajout.getPhoneNumber().getText());
+//        System.out.println("Je suis ici");
+//        System.out.println("------------- " + ajout.getFenetre().getTitle());
 
-        System.out.println("Le nom est: " + ajout.getNom().getText() + " et le phone number: " + ajout.getPhoneNumber().getText());
+//        if (e.getSource().toString().equals(ajout)) {
+        if (ajout != null && e.getSource() == ajout.getBoutonOk()) {
+              ajout.getFenetre().getListModel1().addElement(ajout.getNom().getText() + "  "+ajout.getPhoneNumber().getText());
+        }else{
+            int i = repo.getMonRepertoire().getSelectedIndex();
+            repo.getListModel1().removeElementAt(i);
+        }
+      
+        
+    
+//       ajout.getFenetre().getContentPane().add(lab);
+
+        
     }
 
 }
