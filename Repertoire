@@ -1,0 +1,137 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.cybergod.laboratoire;
+
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+/**
+ *
+ * @author Pierre Meridien
+ * @author Kevin Nelson
+ */
+public class Repertoire extends JFrame implements ActionListener {
+
+    private JPanel panel;
+    private JPanel panelAjouter;
+    private JFrame frame;
+    private JButton ajouter;
+    private JButton supprimer;
+    private JMenuBar menu;
+    private JSeparator separateur;
+    private JLabel label;
+    private JTextField nom;
+    private JLabel l1;  // Label qui suit le nom
+    private JLabel l2;  // Label qui suit le numero de telephone
+    private JButton boutonOk;
+    private JTextField phoneNumber;
+    private JLabel nouvelAjout;
+
+    public JButton getAjouter() {
+        return ajouter;
+    }
+
+    public void setAjouter(JButton ajouter) {
+        this.ajouter = ajouter;
+    }
+
+    public Repertoire() throws HeadlessException {
+        super("Répertoire téléphonique");
+
+        this.setSize(300, 400);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        panel = new JPanel();
+       panel.setLayout(new FlowLayout());
+        setJMenuBar(createMenuBar(panel));
+        add(panel); // Ajout du panel sur le Frame
+
+        ajouter.addActionListener((ActionEvent e) -> {
+            frame = new JFrame();
+            panelAjouter = new JPanel();
+            frame.setTitle("Telephone");
+            
+            panelAjouter.setLayout(new GridLayout(3, 1));
+            
+            label = new JLabel();
+
+            
+            l1 = new JLabel("Nom: ");
+
+
+            nom = new JTextField();
+
+            
+            phoneNumber = new JTextField();
+
+            
+             l2 = new JLabel("Telephone: ");
+
+            boutonOk= new JButton("OK");
+            
+               boutonOk.addActionListener((ActionEvent x) -> {
+                    
+                   nouvelAjout = new JLabel(nom.getText()+" "+phoneNumber.getText());
+                   System.out.println(nouvelAjout.getText());
+                   System.out.println("J'ajoute au panel ancien");
+                 panel.add(nouvelAjout);
+    
+                 
+
+        });
+            panelAjouter.add(l1);
+            panelAjouter.add(nom);
+            panelAjouter.add(l2);
+            panelAjouter.add(phoneNumber);
+            panelAjouter.add(boutonOk);
+            frame.add(panelAjouter);
+            frame.setSize(270, 200);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        });
+
+        supprimer.addActionListener((ActionEvent e) -> {
+            System.out.println("J'entre dans supprimer");
+
+        });
+        
+       panel.add(nouvelAjout);
+    }
+
+    private JMenuBar createMenuBar(JPanel panel) {
+        menu = new JMenuBar();
+        ajouter = new JButton("Ajouter");
+        supprimer = new JButton("Supprimer");
+        separateur = new JSeparator();
+        separateur.setOrientation(SwingConstants.VERTICAL);
+        menu.add(ajouter);
+        menu.add(separateur);
+        menu.add(supprimer);
+        panel.add(menu);  // ajout du menu sur le panel
+        return menu;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+        System.out.println("Je suis dans le action performed");
+    }
+
+}
