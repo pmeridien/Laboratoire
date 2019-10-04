@@ -1,0 +1,77 @@
+/**
+ * 
+ */
+package com.najoua.swing.exercice2;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+/**
+ * @author PC
+ *
+ */
+public class Login extends JFrame {
+	
+	private JLabel label;
+	private JPasswordField value;
+	private JLabel l1;
+	private JLabel l2;
+	private JButton b;
+	private JTextField text;
+
+	public Login(String titre) {
+		super(titre);
+
+		label = new JLabel();
+		label.setBounds(20, 150, 200, 150);
+		
+		value = new JPasswordField();
+		value.setBounds(100, 75, 100, 30);
+		
+		l1 = new JLabel("Username:");
+		l1.setBounds(20, 20, 80, 30);
+		
+		l2 = new JLabel("Password:");
+		l2.setBounds(20, 75, 80, 30);
+		
+		b = new JButton("Login");
+		b.setBounds(100, 120, 80, 30);
+		
+		//création d'une classe anonyme
+		b.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				 String data = "Username " + text.getText();  
+                 data += ", Password: "   
+                 + new String(value.getPassword());   
+                 label.setText(data);  
+			}
+		});
+		
+		text = new JTextField();
+		text.setBounds(100, 20, 100, 30);
+		
+		add(value);
+		add(l1);
+		add(label);
+		add(l2);
+		add(b);
+		add(text);
+
+		setSize(300, 300);
+		setLocationRelativeTo(null);
+		setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+
+	}
+
+}
