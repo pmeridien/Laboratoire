@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.ListModel;
 
 /**
- *
+ *@author Pierre Meridien
  * @author Kevin Nelson
  */
 public class Communication implements ActionListener {
@@ -41,10 +41,10 @@ public class Communication implements ActionListener {
             int i = repo.getMonRepertoire().getSelectedIndex();
             repo.getListModel1().removeElementAt(i);
         }
-      
 
 
-        
+
+
     }
 
 }
