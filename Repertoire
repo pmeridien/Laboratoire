@@ -1,0 +1,106 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package laboratoire;
+
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+/**
+ *
+ * @author Kevin Nelson
+ * @author Pierre Meridien Laury
+ */
+public class Repertoire extends JFrame {
+
+    private JPanel panel;
+    private JButton ajouter;
+    private JButton supprimer;
+    private JMenuBar menu;
+    private JSeparator separateur;
+    private static JList monRepertoire;
+    private JLabel test;
+     private DefaultListModel listModel1;
+
+    public JButton getAjouter() {
+        return ajouter;
+    }
+
+    public void setAjouter(JButton ajouter) {
+        this.ajouter = ajouter;
+    }
+
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    public Repertoire() throws HeadlessException {
+        super("Répertoire téléphonique");
+
+        monRepertoire =  new JList<Object>();
+        listModel1 = new DefaultListModel();
+        String st="Workinga  hard";
+        listModel1.addElement(st);
+        
+        monRepertoire.setModel(listModel1);
+        panel = new JPanel();
+        
+        panel.setLayout(new FlowLayout());
+        setJMenuBar(createMenuBar(panel));
+        panel.add(monRepertoire);
+        add(panel); // Ajout du panel sur le Frame
+        
+        
+        ajouter.addActionListener(new Ajouter(this));
+        
+        supprimer.addActionListener(new  Communication(this));
+        
+        this.setSize(300, 400);
+        panel.setSize(300,400);
+        monRepertoire.setSize(300,400);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Test fenettre");
+    }
+    
+    
+
+    private JMenuBar createMenuBar(JPanel panel) {
+        menu = new JMenuBar();
+        ajouter = new JButton("Ajouter");
+        supprimer = new JButton("Supprimer");
+        separateur = new JSeparator();
+        separateur.setOrientation(SwingConstants.VERTICAL);
+        menu.add(ajouter);
+        menu.add(separateur);
+        menu.add(supprimer);
+        panel.add(menu);  // ajout du menu sur le panel
+        return menu;
+    }
+
+    public JList getMonRepertoire() {
+        return monRepertoire;
+    }
+
+    public DefaultListModel getListModel1() {
+        return listModel1;
+    }
+
+   
+    
+   
+
+}

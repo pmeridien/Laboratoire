@@ -1,0 +1,102 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package laboratoire;
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+/**
+ *
+ * @author owner
+ */
+public class Ajouter implements ActionListener {
+
+    private Repertoire fenetre;
+    private JFrame frame;
+    private JPanel newPanel;
+    private JLabel label;
+    private JTextField nom;
+    private JLabel l1;  // Label qui suit le nom
+    private JLabel l2;  // Label qui suit le numero de telephone
+    private JButton boutonOk;
+    private JTextField phoneNumber;
+    private JLabel nouvelAjout;
+
+    public Ajouter(Repertoire fenetre) {
+        this.fenetre = fenetre;
+    }
+
+    public Ajouter() {
+    }
+
+    public JTextField getNom() {
+        return nom;
+    }
+
+    public void setNom(JTextField nom) {
+        this.nom = nom;
+    }
+
+    public JTextField getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(JTextField phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton bouton = (JButton) e.getSource();
+        frame = new JFrame();
+        newPanel = new JPanel();
+        frame.setTitle("Telephone");
+        newPanel.setLayout(new GridLayout(5, 1));
+
+        label = new JLabel();
+
+        l1 = new JLabel("Nom: ");
+
+        nom = new JTextField();
+
+        phoneNumber = new JTextField();
+
+        l2 = new JLabel("Telephone: ");
+
+        boutonOk = new JButton("OK");
+
+        newPanel.add(l1);
+        newPanel.add(nom);
+        newPanel.add(l2);
+        newPanel.add(phoneNumber);
+        newPanel.add(boutonOk);
+        frame.add(newPanel);
+
+        boutonOk.addActionListener(new Communication(this));
+        frame.setSize(270, 200);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+    }
+
+    public JButton getBoutonOk() {
+        return boutonOk;
+    }
+
+    public Repertoire getFenetre() {
+        return fenetre;
+    }
+
+   
+
+}

@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package laboratoire;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.ListModel;
+
+/**
+ *@author Pierre Meridien
+ * @author Kevin Nelson
+ */
+public class Communication implements ActionListener {
+
+    static ActionListener delete;
+
+    private Ajouter ajout;
+    private Repertoire repo;
+
+   public Communication(Repertoire rep) {
+      this.repo = rep;
+    }
+
+    public Communication(Ajouter ajout) {
+        this.ajout = ajout;
+    }
+
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (ajout != null && e.getSource() == ajout.getBoutonOk()) {
+              ajout.getFenetre().getListModel1().addElement(ajout.getNom().getText() + "  "+ajout.getPhoneNumber().getText());
+        }else{
+            int i = repo.getMonRepertoire().getSelectedIndex();
+            repo.getListModel1().removeElementAt(i);
+        }
+
+
+
+
+    }
+
+}
