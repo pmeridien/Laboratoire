@@ -1,0 +1,14 @@
+            boutonOk.addActionListener((ActionEvent x) -> {
+
+                nouvelAjout = new JLabel(nom.getText() + " " + phoneNumber.getText());
+                listeInfos = new ArrayList<>();
+                listeInfos.add(nouvelAjout);
+                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                
+                for( JLabel l: listeInfos) {
+                    panel.add(l);
+                }
+                add(panel);
+                setVisible(true);
+                frame.dispose();
+            });
