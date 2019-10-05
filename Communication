@@ -21,8 +21,7 @@ public class Communication implements ActionListener {
 
     private Ajouter ajout;
     private Repertoire repo;
-//    private Repertoire rep;
-//    private JLabel lab;
+
    public Communication(Repertoire rep) {
       this.repo = rep;
     }
@@ -32,19 +31,10 @@ public class Communication implements ActionListener {
     }
 
 
-//    public Communication(Ajouter ajout, Repertoire rep, JLabel lab) {
-//        this.ajout = ajout;
-//        this.rep = rep;
-//        this.lab = lab;
-//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        lab = new JLabel(ajout.getNom().getText() + ajout.getPhoneNumber().getText());
-//        System.out.println("Je suis ici");
-//        System.out.println("------------- " + ajout.getFenetre().getTitle());
 
-//        if (e.getSource().toString().equals(ajout)) {
         if (ajout != null && e.getSource() == ajout.getBoutonOk()) {
               ajout.getFenetre().getListModel1().addElement(ajout.getNom().getText() + "  "+ajout.getPhoneNumber().getText());
         }else{
@@ -52,9 +42,7 @@ public class Communication implements ActionListener {
             repo.getListModel1().removeElementAt(i);
         }
       
-        
-    
-//       ajout.getFenetre().getContentPane().add(lab);
+
 
         
     }
